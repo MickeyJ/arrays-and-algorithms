@@ -8,12 +8,11 @@ public class ArrayStructures {
     ArrayStructures newArray  = new ArrayStructures();
 
     newArray.generateRandomArray();
-    newArray.printArray();
 
-    newArray.bubbleSort();
-    newArray.printArray();
 
-    newArray.binarySearchForValue(13);
+    System.out.println("\n---------------------- Iteration 1 -----------------------");
+    newArray.printArray();
+    newArray.insertionSort();
 
   }
 
@@ -33,9 +32,70 @@ public class ArrayStructures {
 
         if(theArray[j] > theArray[j + 1]){
           swapValues(j, j + 1);
+          printArray();
         }
 
       }
+
+    }
+
+  }
+
+  public void selectionSort(){
+
+    for(int x = 0; x < arraySize; x++){
+
+      int min = x;
+
+      for(int y = x; y < arraySize; y++){
+
+        System.out.println("min: "+ theArray[min] +", y: "+ theArray[y]);
+
+        if(theArray[min] > theArray[y]){
+          min = y;
+          printArray();
+        }
+
+      }
+      swapValues(x, min);
+
+    }
+
+  }
+
+  public void insertionSort(){
+
+    for(int i = 1; i < arraySize; i++){
+
+      int j = i;
+      int toInsert = theArray[i];
+
+      while((j > 0) && (theArray[j - 1] > toInsert)){
+        theArray[j] = theArray[j - 1];
+        j--;
+      }
+
+      if(i == j){
+        System.out.println(
+          " | Index: "+ i +
+          "\n | ————————-"+
+          "\n | Value: "+ toInsert
+        );
+      } else {
+        System.out.println(
+          "Sorted: "+
+          "\n————————-————————————————"+
+          "\n  Index: | "+ i +"  | => | "+ j +"  | "+
+          "\n  -----------------------"+
+          "\n  Value: | "+ toInsert + " | => | "+ theArray[j + 1] +" | " +
+          "\n————————-————————————————"
+        );
+      }
+      System.out.println("\n---------------------- Iteration "+ (i + 1) +" ----------------------");
+
+      theArray[j] = toInsert;
+
+      printArray();
 
     }
 
@@ -61,9 +121,11 @@ public class ArrayStructures {
     boolean valueInArray = false;
 
     for(int i = 0; i < arraySize; i++){
+
       if(theArray[i] == searchValue){
         valueInArray = true;
       }
+
     }
 
     return valueInArray;
@@ -104,13 +166,9 @@ public class ArrayStructures {
       else if(theArray[middleIndex] > value) highIndex = middleIndex - 1;
 
       else{
-
         System.out.println("Found match for "+ value +" at index: "+ middleIndex);
-
         lowIndex = highIndex + 1;
-
       }
-
 
     }
 
@@ -142,15 +200,19 @@ public class ArrayStructures {
 
   public void printArray(){
 
-    System.out.println("---------------");
-    for(int i = 0; i < arraySize; i++){
+    String indexLine = "";
+    String valueLine = "";
 
-      System.out.print( "| idx: "+ i +" | " );
-      System.out.println( theArray[i] +" | " );
-      System.out.println("---------------");
+    for(int i = 0; i < arraySize; i++){
+      indexLine += "| "+ i +"  ";
+      valueLine += "| "+ theArray[i] +" ";
     }
 
-    System.out.println();
+    System.out.println("==========================================================");
+    System.out.println("Index: "+ indexLine +"|");
+    System.out.println("----------------------------------------------------------");
+    System.out.println("Value: "+ valueLine +"|");
+    System.out.println("——————————————————————————————————————————————————————————");
 
   }
 
