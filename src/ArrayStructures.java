@@ -13,6 +13,8 @@ public class ArrayStructures {
     newArray.bubbleSort();
     newArray.printArray();
 
+    newArray.binarySearchForValue(13);
+
   }
 
   public void generateRandomArray(){
@@ -82,6 +84,34 @@ public class ArrayStructures {
     if(arraySize < 50){
       theArray[arraySize] = value;
       arraySize++;
+    }
+
+  }
+
+  public void binarySearchForValue(int value){
+
+    int lowIndex = 0;
+    int highIndex = arraySize - 1;
+
+    while(lowIndex <= highIndex){
+
+      int middleIndex = (highIndex + lowIndex) / 2;
+
+      System.out.println(lowIndex +", "+ middleIndex  +", "+ highIndex);
+
+      if(theArray[middleIndex] < value) lowIndex = middleIndex + 1;
+
+      else if(theArray[middleIndex] > value) highIndex = middleIndex - 1;
+
+      else{
+
+        System.out.println("Found match for "+ value +" at index: "+ middleIndex);
+
+        lowIndex = highIndex + 1;
+
+      }
+
+
     }
 
   }
